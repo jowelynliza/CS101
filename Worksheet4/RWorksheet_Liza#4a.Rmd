@@ -1,0 +1,57 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r}
+shoe_size <- c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5)
+height <- c(66.0, 68.0, 64.5, 65.0, 70.0,  64.0, 70.0, 71.0, 72.0, 64.0, 74.0, 67.0, 71.0, 71.0)
+gender <- c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M")
+
+df <- data.frame(ShoeSize = shoe_size, Height = height, Gender = gender)
+```
+
+```{r}
+#b
+males <- subset(df, Gender == "M")
+females <- subset(df, Gender == "F")
+print(males)
+print(females)
+
+#c
+mean_shoe_size <- mean(df$ShoeSize)
+mean_height <- mean(df$Height)
+cat("Mean Shoe Size", mean_shoe_size, "\n")
+cat("Mean shoe Size", mean_height, "\n")
+
+#d
+correlation <- cor(df$ShoeSize, df$Height)
+cat("Correlation  between Shoe Size and Height", correlation, "\n")
+```
+```{r}
+#2
+months_vector <- c("March", "April", "January", "November", "January", "September", "October", "September", "November", "August", "juanuary", "November", "November", "February", "May", "August", "July", "December", "August", "September", "November", "February", "April")
+factor_months_vector <- factor(months_vector)
+print(factor_months_vector)
+```
+```{r}
+#3
+summary(months_vector)
+summary(factor_months_vector)
+```
+```{r}
+#4
+direction  <- c("East", "West", "North")
+frequency <- c(1, 4, 3)
+
+new_order_data <- factor(direction, levels = c("East", "West", "North"))
+
+print(new_order_data)
+```
+```{r}
+#5
+write.csv("import_march.csv", row.names = FALSE)
+data <- read.table("import_march.csv", header  = TRUE, sep = ",")
+data
+```
+
