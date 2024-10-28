@@ -127,7 +127,7 @@ for (i in 1:nrow(grades)) {
 for (j in 2:5) {
   avg <- mean(grades[, j])
   if (avg <  80) {
-    cat("The", j - 1, "th test was difficult.\n")
+    cat("The", j - 1, "the test was difficult.\n")
   }
 }
 ```
