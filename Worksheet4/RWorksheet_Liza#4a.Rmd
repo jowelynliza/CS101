@@ -51,7 +51,97 @@ print(new_order_data)
 ```{r}
 #5
 write.csv("import_march.csv", row.names = FALSE)
-data <- read.table("import_march.csv", header  = TRUE, sep = ",")
-data
+data <- read.table("import_march.csv", header = TRUE, sep = ",")
+data()
+```
+```{r}
+#6
+exhaustive_search  <-  function() {
+  user_input <- as.integer(readline(prompt = "Choose a number from 1 to 50: "))
+  if (user_input < 1 || user_input > 50) {
+    return("The number selected is beyond the range of 1 to 50")
+  } else if (user_input == 20) {
+    return("TRUE")
+  } else {
+    print(user_input)
+  }
+}
+exhaustive_search()
+```
+```{r}
+#7
+calculate_min_bills <- function(price) {
+  denominations <- c(1000, 500, 200, 100, 50)
+  
+  if (price %% 50 != 0) {
+    stop("Price must be a number divisible by 50.")
+  }
+  
+  bill_count <- 0
+  
+  for (denom in denominations) {
+    if (price >= denom) {
+      count <- price %/% denom
+      bill_count <- bill_count + count
+      price <- price - (count * denom)
+    }
+  }
+  
+  return(bill_count)
+}
+
+repeat {
+  changeprice_input <- as.numeric(readline(prompt = "Enter the price of the snack (divisible by 50): "))
+  
+  if (!is.na(changeprice_input) && changeprice_input > 0) {
+    break
+  } else {
+    cat("Please enter a valid positive number divisible by 50.\n")
+  }
+}
+
+min_bills <- calculate_min_bills(changeprice_input)
+cat("Minimum number of bills needed: ", min_bills, "\n")
+
+```
+```{r}
+grades <- data.frame(
+  Name = c("Annie", "Thea", "Steve", "Hanna"),
+  Grade1 = c(85, 65, 75, 95),
+  Grade2 = c(65, 75, 55, 75),
+  Grade3 = c(85, 90, 80,100),
+  Grade4 = c(100, 90, 85, 90)
+)
+grades
+```
+```{r}
+for (i in 1:nrow(grades)) {
+  total <- sum(grades[i, 2:5])
+  avg <- total / 4
+  if (avg > 90) {
+    cat(grades$Name[i], "'s average this semestern is", avg, "/n", sep = "")
+  }
+}
+```
+```{r}
+for (j in 2:5) {
+  avg <- mean(grades[, j])
+  if (avg <  80) {
+    cat("The", j - 1, "th test was difficult.\n")
+  }
+}
+```
+```{r}
+for (i in 1:nrow(grades)) {
+  highest <- grades[i, 2]
+  for (j in 3:5) {
+    if (grades[i, j] > highest) {
+      highest <- grades[i, j]
+    }
+  }
+  if (highest > 90) {
+    cat(grades$Name[i], "'s highest grade tthis semester is ", highest, "\n", sep = "")
+  }
+}
 ```
 
